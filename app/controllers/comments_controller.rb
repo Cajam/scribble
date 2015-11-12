@@ -1,5 +1,10 @@
 class CommentsController < ApplicationController
 
+  def new do
+    @post = Post.find(params[:post_id])
+    @comment = Comment.new
+  end
+
   def index
     @comment = Comment.all
   end
@@ -13,6 +18,12 @@ class CommentsController < ApplicationController
   def show
     @comment = Comment.find(params[:id])
   end
+
+  def destroy
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.find(params[:id])
+    @comment.destroy
+    redirect_to post_path(@post)
 
   private
     def comment_params

@@ -4,18 +4,6 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
-
-  def create
-    @post = Post.new!(post_params)
-    if @post.save
-      flash[:notice] = "#{@post.title} was successfully created."
-      redirect_to @post
-    else
-      flash[:alert] = @post.errors.full_messages
-      render 'new'
-    end
-  end
-
   def show
     @post = Post.find(params[:id])
   end
@@ -28,6 +16,18 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+
+  def create
+    @post = Post.create(post_params)
+    if @post.save
+      flash[:notice] = "#{@post.title} was successfully created."
+      redirect_to @post
+    else
+      flash[:alert] = @post.errors.full_messages
+      render 'new'
+    end
+  end
+  
   def update
     @post = Post.find(params[:id])
 
