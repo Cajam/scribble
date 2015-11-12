@@ -6,11 +6,12 @@ class PostsController < ApplicationController
 
 
   def create
-    @post = Post.new(post_params)
-
+    @post = Post.new!(post_params)
     if @post.save
+      flash[:notice] = "#{@post.title} was successfully created."
       redirect_to @post
     else
+      flash[:alert] = @post.errors.full_messages
       render 'new'
     end
   end

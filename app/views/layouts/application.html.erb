@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scribble by Cassidy</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+</head>
+<body>
+<h1>Scribble by Cassidy</h1>
+<% flash.each do |type, message| %>
+  <p class="<%= type %>"><%= message %></p>
+<% end %>
+
+<%= yield %>
+
+</body>
+</html>
