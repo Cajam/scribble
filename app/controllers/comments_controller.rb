@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
 
-  def new do
+  def new
     @post = Post.find(params[:post_id])
     @comment = Comment.new
   end
@@ -24,6 +24,7 @@ class CommentsController < ApplicationController
     @comment = @post.comments.find(params[:id])
     @comment.destroy
     redirect_to post_path(@post)
+  end
 
   private
     def comment_params
